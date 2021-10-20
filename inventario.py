@@ -81,6 +81,7 @@ tela = st.sidebar.radio('Menu', telas)
                                #Funçoes
 ######################################################################################################
 st.title('Inventario Ambev - LM :memo:')
+st.subheader('Formulario')
 if tela == 'Inserir item no invetario':
     with st.form(key='myform'):
         st.text_input('data do inventario') # data
