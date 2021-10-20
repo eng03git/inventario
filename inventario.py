@@ -1,5 +1,5 @@
 ######################################################################################################
-                                           #Introdução
+                                           #Introduaao
 ######################################################################################################
 
 
@@ -27,10 +27,12 @@ from pylogix import PLC
 from PIL import Image
 import io
 import matplotlib.pyplot as plt
+import cv2
+from pyzbar.pyzbar import decode
 
 
 ######################################################################################################
-				#Configurações da página
+				#Configuraaaes da pagina
 ######################################################################################################
 
 st.set_page_config(
@@ -74,15 +76,18 @@ images = mydb.images
 
 st.sidebar.image('latas minas.png')
 
-telas = ['Inserir item no inventário', 'Atualizar item no inventário', 'Visualizar inventários']
+telas = ['Inserir item no inventario', 'Atualizar item no inventario', 'Visualizar inventarios']
 tela = st.sidebar.radio('Menu', telas)
 
 ######################################################################################################
-                               #Funçoes
+                               #Funaoes
 ######################################################################################################
-st.title('Inventário Ambev - LM :memo:')
-st.subheader('Formulário')
-if tela == 'Inserir item no inventário':
+
+
+st.title('Inventario Ambev - LM :memo:')
+if tela == 'Inserir item no inventario':
+    st.subheader('Formulario')
+
     with st.form(key='myform'):
         st.text_input('data do inventario') # data
         st.text_input('empresa')
@@ -99,7 +104,6 @@ if tela == 'Inserir item no inventário':
         st.text_input('Modelo')
         st.text_input('Numero de serie')
         st.text_input('Quantidade')
-        #st.text_input('')
 
         submit_button = st.form_submit_button(label='Submit')
 
@@ -115,3 +119,8 @@ if tela == 'Inserir item no inventário':
         st.image(io.BytesIO(im2.getvalue()))
         st.button('Confirma envio da foto do equipamento?')
        
+
+if tela == 'Visualizar inventarios':
+    from streamlit_webrtc import webrtc_streamer
+
+    webrtc_streamer(key="example")
