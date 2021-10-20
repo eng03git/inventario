@@ -28,8 +28,6 @@ from PIL import Image
 import io
 import matplotlib.pyplot as plt
 import cv2
-#from pyzbar.pyzbar import decode
-
 
 ######################################################################################################
 				#Configuraaaes da pagina
@@ -121,6 +119,12 @@ if tela == 'Inserir item no inventario':
        
 
 if tela == 'Visualizar inventarios':
-    from streamlit_webrtc import webrtc_streamer
+    im2 = st.file_uploader('Selecione a foto do equipamento')
 
-    webrtc_streamer(key="example")
+    if im2 is not None:
+        file_bytes = io.BytesIO(im2.getvalue())
+        image = cv2.imdecode(np.frombuffer(file_bytes.read(), np.uint8), cv2.IMREAD_COLOR)
+        qrCodeDetector = cv2.QRCodeDetector()
+        decodedText, points, _ = qrCodeDetector.detectAndDecode(image)
+        qr_data = decodedText.split(',')
+        st.write(qr_data[0])
