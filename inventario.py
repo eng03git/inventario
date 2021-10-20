@@ -74,15 +74,15 @@ images = mydb.images
 
 st.sidebar.image('latas minas.png')
 
-telas = ['Inserir item no invetario', 'Atualizar item no inventario', 'Visualizar invetarios']
+telas = ['Inserir item no inventário', 'Atualizar item no inventário', 'Visualizar inventários']
 tela = st.sidebar.radio('Menu', telas)
 
 ######################################################################################################
                                #Funçoes
 ######################################################################################################
-st.title('Inventario Ambev - LM :memo:')
-st.subheader('Formulario')
-if tela == 'Inserir item no invetario':
+st.title('Inventário Ambev - LM :memo:')
+st.subheader('Formulário')
+if tela == 'Inserir item no inventário':
     with st.form(key='myform'):
         st.text_input('data do inventario') # data
         st.text_input('empresa')
